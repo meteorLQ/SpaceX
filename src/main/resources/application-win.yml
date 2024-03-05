@@ -6,7 +6,7 @@ spring:
   lifecycle:
     timeout-per-shutdown-phase: 30s
   application:
-    name: LIDAR
+    name: SpaceX
   boot:
     admin:
       client:

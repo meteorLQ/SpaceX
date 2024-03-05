@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: 'mac'
+    active: 'win'
 
   servlet:
     multipart:
@@ -34,7 +34,7 @@ logging:
   level:
     com.lq: debug
   file:
-    path: ../LiDAR/logs
+    path: ../SpaceX/logs
 #    org.springframework: info
 
 #  kafka:
@@ -51,7 +51,7 @@ logging:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  type-aliases-package: com.lq.lidar.**.domain
+  type-aliases-package: com.lq.spacex.**.domain
 
 datasource:
   primary:
