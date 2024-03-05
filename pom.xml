@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.3</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.lq</groupId>
+    <artifactId>SpaceX</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>SpaceX</name>
+    <description>SpaceX</description>
+    <properties>
+        <java.version>21</java.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>2.0.47</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>33.0.0-jre</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+
+        </plugins>
+    </build>
+
+    <!-- 环境 -->
+    <profiles>
+        <!-- 开发 -->
+        <profile>
+            <id>win</id>
+            <activation>
+                <!--默认激活配置-->
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!--当前环境-->
+                <profile.name>win</profile.name>
+                <current.env>win</current.env>
+            </properties>
+            <repositories>
+                <repository>
+                    <id>sba-snapshot</id>
+                    <name>Spring Boot Admin Snapshots</name>
+                    <url>https://maven.pkg.github.com/codecentric/spring-boot-admin</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                </repository>
+            </repositories>
+        </profile>
+        <profile>
+            <id>mac</id>
+            <properties>
+                <!--当前环境-->
+                <profile.name>mac</profile.name>
+                <current.env>mac</current.env>
+            </properties>
+        </profile>
+        <!-- 测试 -->
+        <profile>
+            <id>test</id>
+            <properties>
+                <!--当前环境-->
+                <profile.name>test</profile.name>
+                <current.env>test</current.env>
+            </properties>
+        </profile>
+        <!-- 生产 -->
+        <profile>
+            <id>prod</id>
+            <properties>
+                <!--当前环境-->
+                <profile.name>prod</profile.name>
+                <current.env>prod</current.env>
+            </properties>
+        </profile>
+    </profiles>
+</project>
