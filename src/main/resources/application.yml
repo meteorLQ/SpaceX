@@ -9,11 +9,11 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
-#  datasource:
-#    driver-class-name: org.postgresql.Driver
-#    url: jdbc:postgresql://localhost:5432/cms
-#    username: postgres
-#    password: 123456
+  datasource:
+    #driver-class-name: org.postgresql.Driver
+    url: jdbc:mysql://207.211.170.50:3306/SpaceX
+    username: root
+    password: 123456
 #    dynamic:
 #      primary: cms
 #      strict: true
@@ -53,17 +53,17 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   type-aliases-package: com.lq.spacex.**.domain
 
-datasource:
-  primary:
-    driver-class-name: org.postgresql.Driver
-    jdbc-url: jdbc:postgresql://localhost:5432/cms
-    username: postgres
-    password: 123456
-  secondary:
-    driver-class-name: org.postgresql.Driver
-    jdbc-url: jdbc:postgresql://localhost:5432/camunda
-    username: postgres
-    password: 123456
+#datasource:
+#  primary:
+#    driver-class-name: org.postgresql.Driver
+#    jdbc-url: jdbc:postgresql://localhost:5432/cms
+#    username: postgres
+#    password: 123456
+#  secondary:
+#    driver-class-name: org.postgresql.Driver
+#    jdbc-url: jdbc:postgresql://localhost:5432/camunda
+#    username: postgres
+#    password: 123456
 #camunda:
 #  bpm:
 #    auto-deployment-enabled: false
