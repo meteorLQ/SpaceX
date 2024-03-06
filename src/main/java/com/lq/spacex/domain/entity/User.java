@@ -1,7 +1,10 @@
 package com.lq.spacex.domain.entity;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class User {
     private  String id;
+    @NotBlank(message = "[name]名称不能为空")
     private  String name;
 
     public String getId() {
