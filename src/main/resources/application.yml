@@ -11,9 +11,9 @@ spring:
       fail-on-empty-beans: false
   datasource:
     #driver-class-name: org.postgresql.Driver
-    url: jdbc:mysql://207.211.170.50:3306/SpaceX
-    username: root
-    password: 123456
+    url: jdbc:postgresql://207.211.170.50:5432/SpaceX
+    username: postgres
+    password: Abc1234%
 #    dynamic:
 #      primary: cms
 #      strict: true
