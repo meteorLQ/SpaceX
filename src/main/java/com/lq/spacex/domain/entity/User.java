@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 public class User {
     @TableId("user_id")
     private  String userId;
+
     @NotBlank(message = "[userName]名称不能为空")
     private  String userName;
 
