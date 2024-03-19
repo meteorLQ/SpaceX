@@ -1,10 +1,11 @@
 package com.lq.spacex.controller;
 
-
 import com.google.common.collect.Lists;
 import com.lq.spacex.common.core.controller.BaseController;
 import com.lq.spacex.common.core.domain.ResponseEntity;
+import com.lq.spacex.domain.entity.Role;
 import com.lq.spacex.domain.entity.User;
+import com.lq.spacex.service.IRoleService;
 import com.lq.spacex.service.IUserService;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,23 +16,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
-public class UserController  extends BaseController {
+@RequestMapping("/role")
+public class RoleController extends BaseController {
     @Autowired
-    IUserService userService;
+    IRoleService roleService;
     @GetMapping("/get")
     @ResponseBody
-    public ResponseEntity getUser(){
+    public ResponseEntity getRole(){
         startPage();
-        List<User> list = userService.list();
+        List<Role> list = roleService.list();
         return ResponseEntity.success(getDataTable(list));
     }
 
     @PostMapping("/save")
-    public void saveUser(@RequestBody @Validated User user){
+    public void saveRole(@RequestBody @Validated Role role){
         ArrayList<@Nullable Object> objects = Lists.newArrayListWithCapacity(10);
 //        Role.builder().menuId(1).menuIds(objects).deptIds(objects).build();
-        userService.saveOrUpdate(user);
+        roleService.saveOrUpdate(role);
     }
 }
-
