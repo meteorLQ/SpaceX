@@ -5,4 +5,5 @@ import com.lq.spacex.domain.entity.Role;
 
 public interface IRoleService extends IService<Role> {
 
+
 }
