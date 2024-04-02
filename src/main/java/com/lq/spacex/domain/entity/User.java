@@ -19,6 +19,10 @@ public class User extends BaseEntity{
 
 
 
+
+
+
+
     @NotBlank(message = "[userName]名称不能为空")
     private  String userName;
 
