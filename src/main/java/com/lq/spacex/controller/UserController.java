@@ -31,6 +31,7 @@ public class UserController  extends BaseController {
     public void saveUser(@RequestBody @Validated User user){
         ArrayList<@Nullable Object> objects = Lists.newArrayListWithCapacity(10);
 //        Role.builder().menuId(1).menuIds(objects).deptIds(objects).build();
+
         userService.saveOrUpdate(user);
     }
 }
