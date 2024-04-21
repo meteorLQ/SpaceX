@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/testC")
 public class TestController {
 
+
     @GetMapping("/test")
     public  void test(){
         System.out.println("1111");
