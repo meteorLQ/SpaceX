@@ -5,6 +5,9 @@ import com.lq.spacex.domain.entity.User;
 
 public interface UserMapper extends BaseMapper<User> {
 
-    
+
+
+
+
     
 }
