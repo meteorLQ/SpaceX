@@ -1,25 +1,19 @@
 package com.lq.spacex.domain.entity;
 
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.lq.spacex.common.core.domain.BaseEntity;
+//import com.baomidou.mybatisplus.annotation.TableField;
+
 import lombok.Builder;
 import lombok.Data;
-import lombok.Singular;
-
-import java.util.List;
-import java.util.Set;
 
 @Data
 @Builder
-@TableName("x_role")
+//@TableName("x_role")
 public class Role  {
     /**
      * 角色ID
      */
-    @TableId("role_id")
+//    @TableId("role_id")
     private Long roleId;
 
     /**
@@ -45,13 +39,13 @@ public class Role  {
     /**
      * 菜单树选择项是否关联显示（ 0：父子不互相关联显示 1：父子互相关联显示）
      */
-    @TableField(exist = false)
+//    @TableField(exist = false)
     private boolean menuCheckStrictly;
 
     /**
      * 部门树选择项是否关联显示（0：父子不互相关联显示 1：父子互相关联显示 ）
      */
-    @TableField(exist = false)
+//    @TableField(exist = false)
     private boolean deptCheckStrictly;
 
     /**

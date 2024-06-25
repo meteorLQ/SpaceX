@@ -1,12 +1,10 @@
 package com.lq.spacex.domain.entity;
 
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.lq.spacex.common.core.domain.BaseEntity;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
-@TableName("x_user")
+//@TableName("x_user")
 @Data
 public class User extends BaseEntity{
 
@@ -14,7 +12,7 @@ public class User extends BaseEntity{
 //    @TableField(exist=false)
 //    private BaseEntity baseEntity=new BaseEntity();
 
-    @TableId("user_id")
+//    @TableId("user_id")
     private  String userId;
 
 
