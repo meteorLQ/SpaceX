@@ -18,5 +18,6 @@ public class TestController {
         String jsonString = JSON.toJSONString(role);
         System.out.println("jsonString = " + jsonString);
         System.out.println("jsonString = " + jsonString);
+
     }
 }
