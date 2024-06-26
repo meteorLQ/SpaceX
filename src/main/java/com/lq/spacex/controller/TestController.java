@@ -17,5 +17,6 @@ public class TestController {
         Role role = Role.builder().roleName("测试").roleId(1l).build();
         String jsonString = JSON.toJSONString(role);
         System.out.println("jsonString = " + jsonString);
+        System.out.println("jsonString = " + jsonString);
     }
 }
