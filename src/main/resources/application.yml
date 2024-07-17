@@ -1,6 +1,6 @@
 spring:
-#  profiles:
-#    active: 'win'
+  profiles:
+    active: 'win'
 
   servlet:
     multipart:
@@ -9,11 +9,11 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
-#  datasource:
-#    #driver-class-name: org.postgresql.Driver
-#    url: jdbc:postgresql://207.211.170.50:5432/SpaceX
-#    username: postgres
-#    password: Abc1234%
+  datasource:
+    #driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://207.211.162.191:5432/spaceX
+    username: user_QFwaZs
+    password: password_pS3pEM
 #    dynamic:
 #      primary: cms
 #      strict: true
@@ -48,10 +48,10 @@ logging:
 #      group-id: lidar
 
 # MyBatis配置
-#mybatis-plus:
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-#  type-aliases-package: com.lq.spacex.**.domain
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.lq.spacex.**.domain
 
 #datasource:
 #  primary:
