@@ -22,7 +22,7 @@ public class SysUser extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 用户ID */
-    private Long userId;
+    private Long id;
 
     /** 部门ID */
     private Long deptId;
@@ -78,24 +78,24 @@ public class SysUser extends BaseEntity
 
     }
 
-    public SysUser(Long userId)
+    public SysUser(Long id)
     {
-        this.userId = userId;
+        this.id = id;
     }
 
-    public Long getUserId()
+    public Long getId()
     {
-        return userId;
+        return id;
     }
 
-    public void setUserId(Long userId)
+    public void setUserId(Long id)
     {
-        this.userId = userId;
+        this.id = id;
     }
 
     public boolean isAdmin()
     {
-        return isAdmin(this.userId);
+        return isAdmin(this.id);
     }
 
     public static boolean isAdmin(Long userId)
@@ -264,7 +264,7 @@ public class SysUser extends BaseEntity
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("userId", getUserId())
+            .append("userId", getId())
             .append("deptId", getDeptId())
             .append("userName", getUserName())
             .append("nickName", getNickName())
