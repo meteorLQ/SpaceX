@@ -34,7 +34,7 @@ public class SysUserController extends BaseController {
 
     }
 
-    @GetMapping("/get")
+    @GetMapping("/get/{id}")
     public ResponseEntity get(@PathVariable String id) {
         SysUser sysUser = userService.getByUid(id);
         return ResponseEntity.success(sysUser);
