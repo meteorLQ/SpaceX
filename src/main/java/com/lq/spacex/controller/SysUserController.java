@@ -7,10 +7,7 @@ import com.lq.spacex.common.core.domain.ResponseEntity;
 import com.lq.spacex.domain.entity.SysUser;
 import com.lq.spacex.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 用户信息
@@ -38,6 +35,12 @@ public class SysUserController extends BaseController {
     public ResponseEntity get(@PathVariable String id) {
         SysUser sysUser = userService.getByUid(id);
         return ResponseEntity.success(sysUser);
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity save(@RequestBody SysUser  u) {
+        userService.save(u);
+        return ResponseEntity.success("成功");
     }
 
 

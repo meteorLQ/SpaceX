@@ -42,6 +42,11 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         return this.getById(id);
     }
 
+    @Override
+    public boolean save(SysUser entity) {
+        return super.save(entity);
+    }
+
     /**
      * 根据条件分页查询已分配用户角色列表
      *

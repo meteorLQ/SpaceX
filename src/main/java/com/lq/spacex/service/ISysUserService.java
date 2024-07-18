@@ -20,4 +20,6 @@ public interface ISysUserService {
 
 
     SysUser getByUid(String id);
+
+    boolean save(SysUser id);
 }
