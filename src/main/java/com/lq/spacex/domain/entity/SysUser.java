@@ -5,9 +5,9 @@ import com.lq.spacex.common.core.domain.BaseEntity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -15,28 +15,37 @@ import java.util.Date;
 /**
  * 用户对象 sys_user
  * 
- * @author ruoyi
+ * @author LQ
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class SysUser extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
     /** 用户ID */
-    private Long id;
+    private String id;
 
     /** 部门ID */
-    private Long deptId;
+    private String deptId;
 
     /** 用户账号 */
+    @NotBlank(message = "用户账号不能为空")
+    @Size(min = 0, max = 30, message = "用户账号长度不能超过30个字符")
     private String userName;
 
     /** 用户昵称 */
+    @Size(min = 0, max = 30, message = "用户昵称长度不能超过30个字符")
     private String nickName;
 
     /** 用户邮箱 */
+    @Email(message = "邮箱格式不正确")
+    @Size(min = 0, max = 50, message = "邮箱长度不能超过50个字符")
     private String email;
 
     /** 手机号码 */
+    @Size(min = 0, max = 11, message = "手机号码长度不能超过11个字符")
     private String phonenumber;
 
     /** 用户性别 */
@@ -59,11 +68,6 @@ public class SysUser extends BaseEntity
 
     /** 最后登录时间 */
     private Date loginDate;
-
-
-
-
-
 //    /** 角色组 */
 //    private Long[] roleIds;
 //
@@ -72,215 +76,13 @@ public class SysUser extends BaseEntity
 
     /** 角色ID */
 //    private Long roleId;
-
-    public SysUser()
-    {
-
-    }
-
-    public SysUser(Long id)
-    {
-        this.id = id;
-    }
-
-    public Long getId()
-    {
-        return id;
-    }
-
-    public void setUserId(Long id)
-    {
-        this.id = id;
-    }
-
     public boolean isAdmin()
     {
         return isAdmin(this.id);
     }
 
-    public static boolean isAdmin(Long userId)
+    public static boolean isAdmin(String userId)
     {
-        return userId != null && 1L == userId;
-    }
-
-    public Long getDeptId()
-    {
-        return deptId;
-    }
-
-    public void setDeptId(Long deptId)
-    {
-        this.deptId = deptId;
-    }
-
-//    @Xss(message = "用户昵称不能包含脚本字符")
-    @Size(min = 0, max = 30, message = "用户昵称长度不能超过30个字符")
-    public String getNickName()
-    {
-        return nickName;
-    }
-
-    public void setNickName(String nickName)
-    {
-        this.nickName = nickName;
-    }
-
-//    @Xss(message = "用户账号不能包含脚本字符")
-    @NotBlank(message = "用户账号不能为空")
-    @Size(min = 0, max = 30, message = "用户账号长度不能超过30个字符")
-    public String getUserName()
-    {
-        return userName;
-    }
-
-    public void setUserName(String userName)
-    {
-        this.userName = userName;
-    }
-
-    @Email(message = "邮箱格式不正确")
-    @Size(min = 0, max = 50, message = "邮箱长度不能超过50个字符")
-    public String getEmail()
-    {
-        return email;
-    }
-
-    public void setEmail(String email)
-    {
-        this.email = email;
-    }
-
-    @Size(min = 0, max = 11, message = "手机号码长度不能超过11个字符")
-    public String getPhonenumber()
-    {
-        return phonenumber;
-    }
-
-    public void setPhonenumber(String phonenumber)
-    {
-        this.phonenumber = phonenumber;
-    }
-
-    public String getSex()
-    {
-        return sex;
-    }
-
-    public void setSex(String sex)
-    {
-        this.sex = sex;
-    }
-
-    public String getAvatar()
-    {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar)
-    {
-        this.avatar = avatar;
-    }
-
-    public String getPassword()
-    {
-        return password;
-    }
-
-    public void setPassword(String password)
-    {
-        this.password = password;
-    }
-
-    public String getStatus()
-    {
-        return status;
-    }
-
-    public void setStatus(String status)
-    {
-        this.status = status;
-    }
-
-    public String getDelFlag()
-    {
-        return delFlag;
-    }
-
-    public void setDelFlag(String delFlag)
-    {
-        this.delFlag = delFlag;
-    }
-
-    public String getLoginIp()
-    {
-        return loginIp;
-    }
-
-    public void setLoginIp(String loginIp)
-    {
-        this.loginIp = loginIp;
-    }
-
-    public Date getLoginDate()
-    {
-        return loginDate;
-    }
-
-    public void setLoginDate(Date loginDate)
-    {
-        this.loginDate = loginDate;
-    }
-
-//    public Long[] getRoleIds()
-//    {
-//        return roleIds;
-//    }
-//
-//    public void setRoleIds(Long[] roleIds)
-//    {
-//        this.roleIds = roleIds;
-//    }
-//
-//    public Long[] getPostIds()
-//    {
-//        return postIds;
-//    }
-//
-//    public void setPostIds(Long[] postIds)
-//    {
-//        this.postIds = postIds;
-//    }
-
-//    public Long getRoleId()
-//    {
-//        return roleId;
-//    }
-//
-//    public void setRoleId(Long roleId)
-//    {
-//        this.roleId = roleId;
-//    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("userId", getId())
-            .append("deptId", getDeptId())
-            .append("userName", getUserName())
-            .append("nickName", getNickName())
-            .append("email", getEmail())
-            .append("phonenumber", getPhonenumber())
-            .append("sex", getSex())
-            .append("avatar", getAvatar())
-            .append("password", getPassword())
-            .append("status", getStatus())
-            .append("delFlag", getDelFlag())
-            .append("loginIp", getLoginIp())
-            .append("loginDate", getLoginDate())
-            .append("createBy", getCreateBy())
-            .append("createTime", getCreateTime())
-            .append("updateBy", getUpdateBy())
-            .append("updateTime", getUpdateTime())
-            .toString();
+        return userId != null && "1" .equals(userId) ;
     }
 }

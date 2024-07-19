@@ -1,6 +1,9 @@
 package com.lq.spacex.common.core.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -10,6 +13,9 @@ import java.time.LocalDateTime;
  * 
  * @author LQ
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class BaseEntity implements Serializable
 {
     private static final long serialVersionUID = 1L;
@@ -47,47 +53,6 @@ public class BaseEntity implements Serializable
 //    {
 //        this.searchValue = searchValue;
 //    }
-
-    public String getCreateBy()
-    {
-        return createBy;
-    }
-
-    public void setCreateBy(String createBy)
-    {
-        this.createBy = createBy;
-    }
-
-    public LocalDateTime getCreateTime()
-    {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime)
-    {
-        this.createTime = createTime;
-    }
-
-    public String getUpdateBy()
-    {
-        return updateBy;
-    }
-
-    public void setUpdateBy(String updateBy)
-    {
-        this.updateBy = updateBy;
-    }
-
-    public LocalDateTime getUpdateTime()
-    {
-        return updateTime;
-    }
-
-    public void setUpdateTime(LocalDateTime updateTime)
-    {
-        this.updateTime = updateTime;
-    }
-
 //    public String getRemark()
 //    {
 //        return remark;

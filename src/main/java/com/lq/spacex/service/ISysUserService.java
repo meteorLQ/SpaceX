@@ -1,25 +1,20 @@
 package com.lq.spacex.service;
 
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.github.pagehelper.PageInfo;
 import com.lq.spacex.domain.entity.SysUser;
 
 /**
- * 用户 业务层
+ * <p>
+ *  服务类
+ * </p>
  *
- * @author ruoyi
+ * @author LQ
+ * @since 2022-02-28
  */
-public interface ISysUserService {
-    /**
-     * 根据条件分页查询用户列表
-     *
-     * @param user 用户信息
-     * @return 用户信息集合信息
-     */
-    PageInfo<SysUser> selectUserList(SysUser sysUser);
+public interface ISysUserService extends IService<SysUser> {
+    PageInfo<SysUser> list(SysUser sysUser);
 
-
-    SysUser getByUid(String id);
-
-    boolean save(SysUser id);
+    SysUser getByUserId(String userId);
 }

@@ -1,62 +1,49 @@
 package com.lq.spacex.service.impl;
 
-
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageInfo;
+
 import com.lq.spacex.domain.entity.SysUser;
 import com.lq.spacex.mapper.SysUserMapper;
 import com.lq.spacex.service.ISysUserService;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
+
 /**
- * 用户 业务层处理
+ * <p>
+ * 服务实现类
+ * </p>
  *
- * @author ruoyi
+ * @author LQ
+ * @since 2022-02-28
  */
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements ISysUserService {
-    private static final Logger log = LoggerFactory.getLogger(SysUserServiceImpl.class);
 
 
-    /**
-     * 根据条件分页查询用户列表
-     *
-     * @param user 用户信息
-     * @return 用户信息集合信息
-     */
     @Override
-    public PageInfo<SysUser> selectUserList(SysUser sysUser) {
+    public PageInfo<SysUser> list(SysUser sysUser) {
         LambdaQueryChainWrapper<SysUser> lambdaQuery = this.lambdaQuery();
         lambdaQuery.like(StringUtils.isNotBlank(sysUser.getUserName()), SysUser::getUserName, sysUser.getUserName());
         lambdaQuery.eq(StringUtils.isNotBlank(sysUser.getPhonenumber()), SysUser::getPhonenumber, sysUser.getPhonenumber());
         PageInfo<SysUser> pageInfo = new PageInfo<>(lambdaQuery.list());
+        List<SysUser> collect = pageInfo.getList().stream().map(cbaySysUser -> CompletableFuture.supplyAsync(() -> {
+            return cbaySysUser;
+        })).collect(Collectors.toList()).stream().map(CompletableFuture::join).collect(Collectors.toList());
+        pageInfo.setList(collect);
+
         return pageInfo;
     }
 
     @Override
-    public SysUser getByUid(String id) {
-        return this.getById(id);
+    @Cacheable(cacheNames = {"sysUser"},key = "#userId")
+    public SysUser getByUserId(String userId) {
+        return this.getById(userId);
     }
-
-    @Override
-    public boolean save(SysUser entity) {
-        return super.save(entity);
-    }
-
-    /**
-     * 根据条件分页查询已分配用户角色列表
-     *
-     * @param user 用户信息
-     * @return 用户信息集合信息
-     */
-
-
-
-
-
-
 }
