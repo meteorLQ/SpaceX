@@ -35,7 +35,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         PageInfo<SysUser> pageInfo = new PageInfo<>(lambdaQuery.list());
         List<SysUser> collect = pageInfo.getList().stream().map(cbaySysUser -> CompletableFuture.supplyAsync(() -> {
             return cbaySysUser;
-        })).collect(Collectors.toList()).stream().map(CompletableFuture::join).collect(Collectors.toList());
+        })).toList().stream().map(CompletableFuture::join).collect(Collectors.toList());
         pageInfo.setList(collect);
 
         return pageInfo;

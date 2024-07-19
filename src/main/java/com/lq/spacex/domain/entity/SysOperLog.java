@@ -15,12 +15,11 @@ import java.time.LocalDateTime;
  * @author LQ
  * @since 2022-06-23
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SysOperLog extends BaseEntity implements Serializable {
+public class SysOperLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
     /**
