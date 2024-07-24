@@ -54,7 +54,7 @@ public class GlobalExceptionHandler
     @ExceptionHandler(ServiceException.class)
     public org.springframework.http.ResponseEntity handleServiceException(ServiceException e, HttpServletRequest request)
     {
-        log.error(e.getMessage(), e);
+        log.warn(e.getMessage());
         Integer code = e.getCode();
 //        return StringUtils.isNotNull(code) ? ResponseEntity.error(code, e.getMessage()) : ResponseEntity.error(e.getMessage());
         return org.springframework.http.ResponseEntity.badRequest().body(ResponseEntity.error(e.getMessage()));

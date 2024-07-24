@@ -3,7 +3,7 @@ package com.lq.spacex.common.core.domain.model;
 /**
  * 用户登录对象
  * 
- * @author ruoyi
+ * @author LQ
  */
 public class LoginBody
 {

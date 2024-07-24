@@ -5,6 +5,7 @@ package com.lq.spacex.controller;
 import com.github.pagehelper.PageInfo;
 import com.lq.spacex.common.annotation.Log;
 import com.lq.spacex.common.annotation.NoRepeat;
+import com.lq.spacex.common.annotation.RateLimiter;
 import com.lq.spacex.common.annotation.TaskTime;
 import com.lq.spacex.common.core.controller.BaseController;
 import com.lq.spacex.common.core.domain.ResponseEntity;
@@ -41,6 +42,7 @@ public class SysUserController extends BaseController {
      */
     @GetMapping("/list")
     @TaskTime
+    @RateLimiter(key = "#sysUser.userName",time = 30,count = 2)
     public ResponseEntity list(SysUser sysUser) {
         startPage();
         PageInfo<SysUser> pageInfo = iSysUserService.list(sysUser);
@@ -54,14 +56,9 @@ public class SysUserController extends BaseController {
      */
     @PostMapping("/saveOrUpdate")
     @Log(title = "用户管理",businessType = BusinessType.INSERT)
-//    @NoRepeat(lockTime = 30,lockKey = "#sysUser.loginNm")
+    @NoRepeat(lockTime = 30,lockKey = "#sysUser.userName")
     @TaskTime
     public ResponseEntity saveOrUpdate(@RequestBody @Validated SysUser sysUser) {
-        try {
-            TimeUnit.SECONDS.sleep(20);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         boolean save = iSysUserService.saveOrUpdate(sysUser);
         if (save) {
             return ResponseEntity.success("操作成功");

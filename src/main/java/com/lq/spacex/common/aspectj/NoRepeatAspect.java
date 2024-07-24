@@ -4,6 +4,7 @@ package com.lq.spacex.common.aspectj;
 
 import com.lq.spacex.common.annotation.NoRepeat;
 import com.lq.spacex.common.exception.ServiceException;
+import com.lq.spacex.common.utils.RedissonLockClient;
 import jakarta.annotation.Resource;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -18,8 +19,8 @@ import java.util.concurrent.TimeUnit;
 @Aspect
 @Component
 public class NoRepeatAspect extends BaseAspect{
-//    @Resource
-//    private RedissonLockClient redissonLockClient;
+    @Resource
+    private RedissonLockClient redissonLockClient;
 
 
 
@@ -43,7 +44,7 @@ public class NoRepeatAspect extends BaseAspect{
             // 公平加锁，lockTime后锁自动释放
             boolean isLocked = false;
             try {
-//                isLocked = redissonLockClient.fairLock(key, TimeUnit.SECONDS, noRepeat.lockTime());
+                isLocked = redissonLockClient.fairLock(key, TimeUnit.SECONDS, noRepeat.lockTime());
                 // 如果成功获取到锁就继续执行
                 if (isLocked) {
                     // 执行进程
@@ -53,6 +54,7 @@ public class NoRepeatAspect extends BaseAspect{
                     throw new ServiceException("请勿重复提交");
                 }
             } finally {
+
                 // 如果锁还存在，在方法执行完成后，释放锁
                 if (isLocked) {
 //                    redissonLockClient.unlock(key);

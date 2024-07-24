@@ -7,7 +7,7 @@ import com.lq.spacex.domain.entity.SysUser;
 /**
  * 用户表 数据层
  *
- * @author ruoyi
+ * @author LQ
  */
 public interface SysUserMapper  extends BaseMapper<SysUser> {
 }
