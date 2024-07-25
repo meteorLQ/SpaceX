@@ -42,7 +42,7 @@ public class SysUserController extends BaseController {
      */
     @GetMapping("/list")
     @TaskTime
-    @RateLimiter(key = "#sysUser.userName",time = 30,count = 2)
+    @RateLimiter(key = "#sysUser.userName",time = 1,count = 2)
     public ResponseEntity list(SysUser sysUser) {
         startPage();
         PageInfo<SysUser> pageInfo = iSysUserService.list(sysUser);
