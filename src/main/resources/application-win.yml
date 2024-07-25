@@ -48,7 +48,7 @@ minio:
 
 
 upload:
-  path: D:\ideatest\SpaceX\
+  path: /opt/spaceX/
 
 management:
   endpoints:
