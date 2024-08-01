@@ -4,15 +4,10 @@ import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapp
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageInfo;
 import com.lq.spacex.domain.entity.SysDictType;
-import com.lq.spacex.domain.entity.SysUser;
 import com.lq.spacex.mapper.SysDictTypeMapper;
 import com.lq.spacex.service.ISysDictTypeService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
 
 /**
  * <p>

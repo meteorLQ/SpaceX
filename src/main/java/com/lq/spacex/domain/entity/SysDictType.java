@@ -1,6 +1,5 @@
 package com.lq.spacex.domain.entity;
 
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.lq.spacex.common.core.domain.BaseEntity;
 import lombok.AllArgsConstructor;
@@ -9,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -31,8 +29,7 @@ public class SysDictType extends BaseEntity implements Serializable {
     /**
      * 字典主键
      */
-    @TableId("dict_id")
-    private Long dictId;
+    private Long id;
 
     /**
      * 字典名称
@@ -47,5 +44,5 @@ public class SysDictType extends BaseEntity implements Serializable {
     /**
      * 状态（0正常 1停用）
      */
-    private String status;
+//    private String status;
 }
