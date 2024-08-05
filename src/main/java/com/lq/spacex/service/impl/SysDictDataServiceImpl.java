@@ -28,6 +28,7 @@ public class SysDictDataServiceImpl extends ServiceImpl<SysDictDataMapper, SysDi
         LambdaQueryChainWrapper<SysDictData> lambdaQuery = this.lambdaQuery();
         lambdaQuery.like(StringUtils.isNotBlank(sysDictData.getDictType()), SysDictData::getDictType, sysDictData.getDictType());
         lambdaQuery.eq(StringUtils.isNotBlank(sysDictData.getDictLabel()), SysDictData::getDictLabel, sysDictData.getDictLabel());
+        lambdaQuery.eq(StringUtils.isNotBlank(sysDictData.getDictValue()), SysDictData::getDictValue, sysDictData.getDictValue());
         return new PageInfo<>(lambdaQuery.list());
     }
 
