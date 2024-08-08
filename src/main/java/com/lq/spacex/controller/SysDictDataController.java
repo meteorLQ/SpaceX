@@ -7,6 +7,7 @@ import com.lq.spacex.common.core.domain.ResponseEntity;
 import com.lq.spacex.common.utils.DictUtils;
 import com.lq.spacex.domain.entity.SysDictData;
 import com.lq.spacex.service.ISysDictDataService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/system/sysDictData")
+@Slf4j
 public class SysDictDataController extends BaseController {
     @Autowired
     private ISysDictDataService sysDictDataService;

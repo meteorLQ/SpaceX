@@ -13,6 +13,7 @@ import io.minio.MinioClient;
 import io.minio.Result;
 import io.minio.messages.Item;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@Slf4j
 public class MinioController extends BaseController {
 
     @Autowired
@@ -49,6 +51,7 @@ public class MinioController extends BaseController {
            // FileUtils.picketFileHead(f);
 
             if (f.isEmpty()) {
+                log.error("文件不能为空");
                 throw new ServiceException("文件不能为空");
             }
             String url = minioService.uploadFile(f);
