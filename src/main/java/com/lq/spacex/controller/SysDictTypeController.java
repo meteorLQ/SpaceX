@@ -1,5 +1,6 @@
 package com.lq.spacex.controller;
 
+import com.alibaba.fastjson2.JSON;
 import com.github.pagehelper.PageInfo;
 import com.lq.spacex.common.annotation.Log;
 import com.lq.spacex.common.annotation.TaskTime;
@@ -11,6 +12,7 @@ import com.lq.spacex.domain.entity.SysDictData;
 import com.lq.spacex.domain.entity.SysDictType;
 import com.lq.spacex.service.ISysDictDataService;
 import com.lq.spacex.service.ISysDictTypeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +30,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/system/sysDictType")
+@Slf4j
 public class SysDictTypeController extends BaseController {
     @Autowired
     private ISysDictTypeService sysDictTypeService;
@@ -46,6 +49,7 @@ public class SysDictTypeController extends BaseController {
     @Log(title = "字典类型",businessType = BusinessType.INSERT)
     @TaskTime
     public ResponseEntity saveOrUpdate(@RequestBody @Validated SysDictType sysDictType) {
+        log.info("保存字典类型：{}", JSON.toJSONString(sysDictType));
         if (sysDictTypeService.saveOrUpdate(sysDictType)) {
             List<SysDictData> dictDatas = sysDictDataService.selectDictDataByType(sysDictType.getDictType());
             DictUtils.setDictCache(sysDictType.getDictType(), dictDatas);
