@@ -20,6 +20,8 @@ public class TestController {
         Role role = Role.builder().roleName("测试").roleId(1l).build();
         String jsonString = JSON.toJSONString(role);
         log.info("jsonString: " + jsonString);
+        log.info("jsonString: " + jsonString);
+        log.info("jsonString: " + jsonString);
     }
 
     public static void main(String[] args) {
