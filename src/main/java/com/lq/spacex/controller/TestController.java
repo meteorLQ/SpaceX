@@ -1,7 +1,7 @@
 package com.lq.spacex.controller;
 
 import com.alibaba.fastjson2.JSON;
-import com.lq.spacex.domain.entity.Role;
+import com.lq.spacex.domain.entity.XRole;
 import com.lq.spacex.service.TestService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +17,7 @@ public class TestController {
     TestService testService;
     @GetMapping("/test")
     public void test() {
-        Role role = Role.builder().roleName("测试").roleId(1l).build();
+        XRole role = XRole.builder().roleName("测试").id(1L).build();
         String jsonString = JSON.toJSONString(role);
         log.info("jsonString: " + jsonString);
         log.info("jsonString: " + jsonString);

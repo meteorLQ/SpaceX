@@ -1,7 +1,7 @@
 package com.lq.spacex.mapper;
 
-import com.lq.spacex.domain.entity.SysRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.lq.spacex.domain.entity.XRole;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author LQ
  * @since 2024-07-29
  */
-public interface SysRoleMapper extends BaseMapper<SysRole> {
+public interface XRoleMapper extends BaseMapper<XRole> {
 
 }
