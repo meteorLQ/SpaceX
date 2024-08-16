@@ -18,4 +18,5 @@ public interface IXRoleService extends IService<XRole> {
      */
     PageInfo<XRole> list(XRole xRole);
 
+    boolean status(Long id);
 }

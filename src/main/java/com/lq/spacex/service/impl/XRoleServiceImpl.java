@@ -34,4 +34,15 @@ public class XRoleServiceImpl extends ServiceImpl<XRoleMapper, XRole> implements
         lambdaQuery.eq(StringUtils.isNotBlank(xRole.getStatus()), XRole::getStatus, xRole.getStatus());
         return new PageInfo<>(lambdaQuery.list());
     }
+
+    @Override
+    public boolean status(Long id) {
+        XRole xRole = this.getById(id);
+        if ("1".equals(xRole.getStatus())) {
+            xRole.setStatus("0");
+        } else if ("0".equals(xRole.getStatus())) {
+            xRole.setStatus("1");
+        }
+        return this.updateById(xRole);
+    }
 }

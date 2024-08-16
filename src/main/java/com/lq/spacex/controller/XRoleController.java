@@ -53,4 +53,14 @@ public class XRoleController extends BaseController {
         return ResponseEntity.success(iXRoleService.getById(id));
     }
 
+    @PostMapping("/status/{id}")
+    @TaskTime
+    public ResponseEntity status(@PathVariable("id") Long id) {
+        boolean save = iXRoleService.status(id);
+        if (save) {
+            return ResponseEntity.success("操作成功");
+        }
+        return ResponseEntity.error("操作失败");
+    }
+
 }
