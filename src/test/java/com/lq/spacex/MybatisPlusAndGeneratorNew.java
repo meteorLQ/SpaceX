@@ -42,7 +42,7 @@ public class MybatisPlusAndGeneratorNew {
                                 .pathInfo(Collections.singletonMap(OutputFile.xml, projectPath + "/src/test/java")) // 设置mapperXml生成路径
                 )
                 .strategyConfig(builder ->
-                            builder.addInclude("sys_role") // 设置需要生成的表名
+                            builder.addInclude("x_menu") // 设置需要生成的表名
                                     .entityBuilder()
                                     .enableLombok() // 启用 Lombok
                                     .enableTableFieldAnnotation() // 启用字段注解

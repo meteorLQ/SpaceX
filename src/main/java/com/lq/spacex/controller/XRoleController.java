@@ -2,12 +2,10 @@ package com.lq.spacex.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.lq.spacex.common.annotation.Log;
-import com.lq.spacex.common.annotation.NoRepeat;
 import com.lq.spacex.common.annotation.TaskTime;
 import com.lq.spacex.common.core.controller.BaseController;
 import com.lq.spacex.common.core.domain.ResponseEntity;
 import com.lq.spacex.common.enums.BusinessType;
-import com.lq.spacex.domain.entity.SysUser;
 import com.lq.spacex.domain.entity.XRole;
 import com.lq.spacex.service.IXRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
