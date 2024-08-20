@@ -5,6 +5,7 @@ import com.lq.spacex.domain.entity.XMenu;
 import com.lq.spacex.service.IXMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,5 +29,11 @@ public class XMenuController {
     public ResponseEntity list(XMenu xMenu) {
         List<XMenu> list = ixMenuService.list(xMenu);
         return ResponseEntity.success(list);
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity get(@PathVariable Long id) {
+        XMenu xMenu = ixMenuService.getById(id);
+        return ResponseEntity.success(xMenu);
     }
 }

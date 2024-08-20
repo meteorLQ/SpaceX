@@ -1,13 +1,12 @@
 package com.lq.spacex.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.lq.spacex.common.core.domain.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -20,15 +19,14 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @TableName("x_menu")
-public class XMenu implements Serializable {
+public class XMenu extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 菜单ID
      */
-    @TableId("menu_id")
-    private Long menuId;
+    private Long id;
 
     /**
      * 菜单名称
@@ -113,31 +111,6 @@ public class XMenu implements Serializable {
      */
     @TableField("icon")
     private String icon;
-
-    /**
-     * 创建者
-     */
-    @TableField("create_by")
-    private String createBy;
-
-    /**
-     * 创建时间
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
-
-    /**
-     * 更新者
-     */
-    @TableField("update_by")
-    private String updateBy;
-
-    /**
-     * 更新时间
-     */
-    @TableField("update_time")
-    private LocalDateTime updateTime;
-
     /**
      * 备注
      */
