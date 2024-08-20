@@ -16,9 +16,6 @@ import jakarta.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 /**
  * <p>
  * 用户管理前端控制器
@@ -28,8 +25,8 @@ import java.util.concurrent.TimeUnit;
  * @since 2022-02-28
  */
 @RestController
-@RequestMapping("/system/user")
-public class SysUserController extends BaseController {
+@RequestMapping("/x/user")
+public class XUserController extends BaseController {
 
     @Resource
     ISysUserService iSysUserService;
