@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,7 +30,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/system/sysDictType")
 @Slf4j
-public class SysDictTypeController extends BaseController {
+public class XDictTypeController extends BaseController {
     @Autowired
     private ISysDictTypeService sysDictTypeService;
     @Autowired

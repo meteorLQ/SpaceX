@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +25,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/system/sysDictData")
 @Slf4j
-public class SysDictDataController extends BaseController {
+public class XDictDataController extends BaseController {
     @Autowired
     private ISysDictDataService sysDictDataService;
     @GetMapping("/list")

@@ -1,13 +1,14 @@
 package com.lq.spacex.controller;
 
+import com.lq.spacex.common.annotation.Log;
+import com.lq.spacex.common.annotation.TaskTime;
 import com.lq.spacex.common.core.domain.ResponseEntity;
+import com.lq.spacex.common.enums.BusinessType;
 import com.lq.spacex.domain.entity.XMenu;
 import com.lq.spacex.service.IXMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,5 +36,16 @@ public class XMenuController {
     public ResponseEntity get(@PathVariable Long id) {
         XMenu xMenu = ixMenuService.getById(id);
         return ResponseEntity.success(xMenu);
+    }
+
+    @PostMapping("/saveOrUpdate")
+    @Log(title = "菜单管理", businessType = BusinessType.INSERT)
+    @TaskTime
+    public ResponseEntity saveOrUpdate(@RequestBody @Validated XMenu xRole) {
+        boolean save = ixMenuService.saveOrUpdate(xRole);
+        if (save) {
+            return ResponseEntity.success("操作成功");
+        }
+        return ResponseEntity.error("操作失败");
     }
 }
