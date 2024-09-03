@@ -1,7 +1,7 @@
 package com.lq.spacex.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.lq.spacex.entity.XRoleMenu;
+import com.lq.spacex.domain.entity.XRoleMenu;
 
 /**
  * <p>

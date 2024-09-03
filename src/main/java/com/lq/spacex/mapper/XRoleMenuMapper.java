@@ -1,7 +1,7 @@
 package com.lq.spacex.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lq.spacex.entity.XRoleMenu;
+import com.lq.spacex.domain.entity.XRoleMenu;
 
 /**
  * <p>

@@ -2,7 +2,7 @@ package com.lq.spacex.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
-import com.lq.spacex.entity.XRoleMenu;
+import com.lq.spacex.domain.entity.XRoleMenu;
 import com.lq.spacex.mapper.XRoleMenuMapper;
 import com.lq.spacex.service.IXRoleMenuService;
 import org.springframework.stereotype.Service;
