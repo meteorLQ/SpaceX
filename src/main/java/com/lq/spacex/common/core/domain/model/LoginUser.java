@@ -1,7 +1,7 @@
 package com.lq.spacex.common.core.domain.model;
 
 
-import com.lq.spacex.domain.entity.SysUser;
+import com.lq.spacex.domain.entity.XUser;
 
 import java.util.Set;
 
@@ -67,7 +67,7 @@ public class LoginUser
     /**
      * 用户信息
      */
-    private SysUser user;
+    private XUser user;
 
     public String getUserId()
     {
@@ -103,13 +103,13 @@ public class LoginUser
     {
     }
 
-    public LoginUser(SysUser user, Set<String> permissions)
+    public LoginUser(XUser user, Set<String> permissions)
     {
         this.user = user;
         this.permissions = permissions;
     }
 
-    public LoginUser(String userId, Long deptId, SysUser user, Set<String> permissions)
+    public LoginUser(String userId, Long deptId, XUser user, Set<String> permissions)
     {
         this.userId = userId;
         this.deptId = deptId;
@@ -246,12 +246,12 @@ public class LoginUser
         this.permissions = permissions;
     }
 
-    public SysUser getUser()
+    public XUser getUser()
     {
         return user;
     }
 
-    public void setUser(SysUser user)
+    public void setUser(XUser user)
     {
         this.user = user;
     }

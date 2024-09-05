@@ -4,7 +4,7 @@ package com.lq.spacex.common.utils;
 import com.lq.spacex.common.constant.HttpStatus;
 import com.lq.spacex.common.core.domain.model.LoginUser;
 import com.lq.spacex.common.exception.ServiceException;
-import com.lq.spacex.domain.entity.SysUser;
+import com.lq.spacex.domain.entity.XUser;
 
 /**
  * 安全服务工具类
@@ -67,7 +67,7 @@ public class SecurityUtils
         {
 //            return (LoginUser) getAuthentication().getPrincipal();
             LoginUser loginUser = new LoginUser();
-            SysUser cbaySysUser = new SysUser();
+            XUser cbaySysUser = new XUser();
             cbaySysUser.setId("admin");
             cbaySysUser.setUserName("admin");
             loginUser.setUser(cbaySysUser);

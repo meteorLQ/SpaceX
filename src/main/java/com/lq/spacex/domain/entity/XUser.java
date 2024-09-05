@@ -1,6 +1,7 @@
 package com.lq.spacex.domain.entity;
 
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.lq.spacex.common.core.domain.BaseEntity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -20,7 +21,8 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SysUser extends BaseEntity
+@TableName("x_user")
+public class XUser extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 

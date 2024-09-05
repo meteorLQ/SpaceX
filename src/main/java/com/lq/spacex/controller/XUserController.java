@@ -10,7 +10,7 @@ import com.lq.spacex.common.annotation.TaskTime;
 import com.lq.spacex.common.core.controller.BaseController;
 import com.lq.spacex.common.core.domain.ResponseEntity;
 import com.lq.spacex.common.enums.BusinessType;
-import com.lq.spacex.domain.entity.SysUser;
+import com.lq.spacex.domain.entity.XUser;
 import com.lq.spacex.service.ISysUserService;
 import jakarta.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -40,9 +40,9 @@ public class XUserController extends BaseController {
     @GetMapping("/list")
     @TaskTime
     @RateLimiter(key = "#sysUser.userName",time = 1,count = 2)
-    public ResponseEntity list(SysUser sysUser) {
+    public ResponseEntity list(XUser sysUser) {
         startPage();
-        PageInfo<SysUser> pageInfo = iSysUserService.list(sysUser);
+        PageInfo<XUser> pageInfo = iSysUserService.list(sysUser);
         return ResponseEntity.success(getDataTable(pageInfo));
     }
 
@@ -55,7 +55,7 @@ public class XUserController extends BaseController {
     @Log(title = "用户管理",businessType = BusinessType.INSERT)
     @NoRepeat(lockTime = 30,lockKey = "#sysUser.userName")
     @TaskTime
-    public ResponseEntity saveOrUpdate(@RequestBody @Validated SysUser sysUser) {
+    public ResponseEntity saveOrUpdate(@RequestBody @Validated XUser sysUser) {
         boolean save = iSysUserService.saveOrUpdate(sysUser);
         if (save) {
             return ResponseEntity.success("操作成功");
@@ -83,7 +83,7 @@ public class XUserController extends BaseController {
      * @return
      */
     @PostMapping("/updateStatus")
-    public ResponseEntity updateStatus(@RequestBody SysUser sysUser) {
+    public ResponseEntity updateStatus(@RequestBody XUser sysUser) {
         boolean update = iSysUserService.updateById(sysUser);
         if (update) {
             return ResponseEntity.success("操作成功");

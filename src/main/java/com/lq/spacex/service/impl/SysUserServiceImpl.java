@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapp
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageInfo;
 
-import com.lq.spacex.domain.entity.SysUser;
+import com.lq.spacex.domain.entity.XUser;
 import com.lq.spacex.mapper.SysUserMapper;
 import com.lq.spacex.service.ISysUserService;
 import org.apache.commons.lang3.StringUtils;
@@ -24,16 +24,16 @@ import java.util.stream.Collectors;
  * @since 2022-02-28
  */
 @Service
-public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements ISysUserService {
+public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, XUser> implements ISysUserService {
 
 
     @Override
-    public PageInfo<SysUser> list(SysUser sysUser) {
-        LambdaQueryChainWrapper<SysUser> lambdaQuery = this.lambdaQuery();
-        lambdaQuery.like(StringUtils.isNotBlank(sysUser.getUserName()), SysUser::getUserName, sysUser.getUserName());
-        lambdaQuery.eq(StringUtils.isNotBlank(sysUser.getPhonenumber()), SysUser::getPhonenumber, sysUser.getPhonenumber());
-        PageInfo<SysUser> pageInfo = new PageInfo<>(lambdaQuery.list());
-        List<SysUser> collect = pageInfo.getList().stream().map(cbaySysUser -> CompletableFuture.supplyAsync(() -> {
+    public PageInfo<XUser> list(XUser sysUser) {
+        LambdaQueryChainWrapper<XUser> lambdaQuery = this.lambdaQuery();
+        lambdaQuery.like(StringUtils.isNotBlank(sysUser.getUserName()), XUser::getUserName, sysUser.getUserName());
+        lambdaQuery.eq(StringUtils.isNotBlank(sysUser.getPhonenumber()), XUser::getPhonenumber, sysUser.getPhonenumber());
+        PageInfo<XUser> pageInfo = new PageInfo<>(lambdaQuery.list());
+        List<XUser> collect = pageInfo.getList().stream().map(cbaySysUser -> CompletableFuture.supplyAsync(() -> {
             return cbaySysUser;
         })).toList().stream().map(CompletableFuture::join).collect(Collectors.toList());
         pageInfo.setList(collect);
@@ -43,7 +43,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     @Override
     @Cacheable(cacheNames = {"sysUser"},key = "#userId")
-    public SysUser getByUserId(String userId) {
+    public XUser getByUserId(String userId) {
         return this.getById(userId);
     }
 }
