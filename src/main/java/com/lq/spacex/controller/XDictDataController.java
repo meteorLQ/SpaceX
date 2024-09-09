@@ -5,7 +5,7 @@ import com.lq.spacex.common.annotation.TaskTime;
 import com.lq.spacex.common.core.controller.BaseController;
 import com.lq.spacex.common.core.domain.ResponseEntity;
 import com.lq.spacex.common.utils.DictUtils;
-import com.lq.spacex.domain.entity.SysDictData;
+import com.lq.spacex.domain.entity.XDictData;
 import com.lq.spacex.service.ISysDictDataService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,17 +30,17 @@ public class XDictDataController extends BaseController {
     private ISysDictDataService sysDictDataService;
     @GetMapping("/list")
     @TaskTime
-    public ResponseEntity list(SysDictData sysDictData) {
+    public ResponseEntity list(XDictData sysDictData) {
         startPage();
-        PageInfo<SysDictData> pageInfo = sysDictDataService.list(sysDictData);
+        PageInfo<XDictData> pageInfo = sysDictDataService.list(sysDictData);
         return ResponseEntity.success(getDataTable(pageInfo));
     }
 
     @PostMapping("/saveOrUpdate")
     @TaskTime
-    public ResponseEntity saveOrUpdate(@RequestBody @Validated SysDictData sysDictData) {
+    public ResponseEntity saveOrUpdate(@RequestBody @Validated XDictData sysDictData) {
         if (sysDictDataService.saveOrUpdate(sysDictData)) {
-            List<SysDictData> dictDatas = sysDictDataService.selectDictDataByType(sysDictData.getDictType());
+            List<XDictData> dictDatas = sysDictDataService.selectDictDataByType(sysDictData.getDictType());
             DictUtils.setDictCache(sysDictData.getDictType(), dictDatas);
             return ResponseEntity.success("操作成功");
         }
@@ -59,7 +59,7 @@ public class XDictDataController extends BaseController {
     @GetMapping(value = "/type/{dictType}")
     public ResponseEntity dictType(@PathVariable String dictType)
     {
-        List<SysDictData> list = sysDictDataService.selectCacheDictDataByType(dictType);
+        List<XDictData> list = sysDictDataService.selectCacheDictDataByType(dictType);
         return ResponseEntity.success(list);
 
     }

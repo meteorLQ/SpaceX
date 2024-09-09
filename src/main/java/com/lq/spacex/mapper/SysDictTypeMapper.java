@@ -2,7 +2,7 @@ package com.lq.spacex.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lq.spacex.domain.entity.SysDictType;
+import com.lq.spacex.domain.entity.XDictType;
 
 /**
  * <p>
@@ -12,6 +12,6 @@ import com.lq.spacex.domain.entity.SysDictType;
  * @author LQ
  * @since 2024-07-29
  */
-public interface SysDictTypeMapper extends BaseMapper<SysDictType> {
+public interface SysDictTypeMapper extends BaseMapper<XDictType> {
 
 }

@@ -18,8 +18,8 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@TableName("sys_dict_data")
-public class SysDictData implements Serializable {
+@TableName("x_dict_data")
+public class XDictData implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

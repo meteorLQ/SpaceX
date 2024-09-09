@@ -2,7 +2,7 @@ package com.lq.spacex.common.utils;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.lq.spacex.common.constant.CacheConstants;
-import com.lq.spacex.domain.entity.SysDictData;
+import com.lq.spacex.domain.entity.XDictData;
 
 import java.util.Collection;
 import java.util.List;
@@ -25,7 +25,7 @@ public class DictUtils
      * @param key 参数键
      * @param dictDatas 字典数据列表
      */
-    public static void setDictCache(String key, List<SysDictData> dictDatas)
+    public static void setDictCache(String key, List<XDictData> dictDatas)
     {
         SpringUtils.getBean(RedisUtils.class).setCacheObject(getCacheKey(key), dictDatas);
     }
@@ -36,12 +36,12 @@ public class DictUtils
      * @param key 参数键
      * @return dictDatas 字典数据列表
      */
-    public static List<SysDictData> getDictCache(String key)
+    public static List<XDictData> getDictCache(String key)
     {
         JSONArray arrayCache = SpringUtils.getBean(RedisUtils.class).getCacheObject(getCacheKey(key));
         if (StringUtils.isNotNull(arrayCache))
         {
-            return arrayCache.toList(SysDictData.class);
+            return arrayCache.toList(XDictData.class);
         }
         return null;
     }
@@ -89,14 +89,14 @@ public class DictUtils
     public static String getDictLabel(String dictType, String dictValue, String separator)
     {
         StringBuilder propertyString = new StringBuilder();
-        List<SysDictData> datas = getDictCache(dictType);
+        List<XDictData> datas = getDictCache(dictType);
         if (StringUtils.isNull(datas))
         {
             return StringUtils.EMPTY;
         }
         if (StringUtils.containsAny(separator, dictValue))
         {
-            for (SysDictData dict : datas)
+            for (XDictData dict : datas)
             {
                 for (String value : dictValue.split(separator))
                 {
@@ -110,7 +110,7 @@ public class DictUtils
         }
         else
         {
-            for (SysDictData dict : datas)
+            for (XDictData dict : datas)
             {
                 if (dictValue.equals(dict.getDictValue()))
                 {
@@ -132,14 +132,14 @@ public class DictUtils
     public static String getDictValue(String dictType, String dictLabel, String separator)
     {
         StringBuilder propertyString = new StringBuilder();
-        List<SysDictData> datas = getDictCache(dictType);
+        List<XDictData> datas = getDictCache(dictType);
         if (StringUtils.isNull(datas))
         {
             return StringUtils.EMPTY;
         }
         if (StringUtils.containsAny(separator, dictLabel))
         {
-            for (SysDictData dict : datas)
+            for (XDictData dict : datas)
             {
                 for (String label : dictLabel.split(separator))
                 {
@@ -153,7 +153,7 @@ public class DictUtils
         }
         else
         {
-            for (SysDictData dict : datas)
+            for (XDictData dict : datas)
             {
                 if (dictLabel.equals(dict.getDictLabel()))
                 {
@@ -173,12 +173,12 @@ public class DictUtils
     public static String getDictValues(String dictType)
     {
         StringBuilder propertyString = new StringBuilder();
-        List<SysDictData> datas = getDictCache(dictType);
+        List<XDictData> datas = getDictCache(dictType);
         if (StringUtils.isNull(datas))
         {
             return StringUtils.EMPTY;
         }
-        for (SysDictData dict : datas)
+        for (XDictData dict : datas)
         {
             propertyString.append(dict.getDictValue()).append(SEPARATOR);
         }
@@ -194,12 +194,12 @@ public class DictUtils
     public static String getDictLabels(String dictType)
     {
         StringBuilder propertyString = new StringBuilder();
-        List<SysDictData> datas = getDictCache(dictType);
+        List<XDictData> datas = getDictCache(dictType);
         if (StringUtils.isNull(datas))
         {
             return StringUtils.EMPTY;
         }
-        for (SysDictData dict : datas)
+        for (XDictData dict : datas)
         {
             propertyString.append(dict.getDictLabel()).append(SEPARATOR);
         }

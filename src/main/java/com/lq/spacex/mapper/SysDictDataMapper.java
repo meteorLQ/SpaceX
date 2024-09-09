@@ -1,6 +1,6 @@
 package com.lq.spacex.mapper;
 
-import com.lq.spacex.domain.entity.SysDictData;
+import com.lq.spacex.domain.entity.XDictData;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author LQ
  * @since 2024-07-29
  */
-public interface SysDictDataMapper extends BaseMapper<SysDictData> {
+public interface SysDictDataMapper extends BaseMapper<XDictData> {
 
 }

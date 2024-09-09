@@ -8,8 +8,8 @@ import com.lq.spacex.common.core.controller.BaseController;
 import com.lq.spacex.common.core.domain.ResponseEntity;
 import com.lq.spacex.common.enums.BusinessType;
 import com.lq.spacex.common.utils.DictUtils;
-import com.lq.spacex.domain.entity.SysDictData;
-import com.lq.spacex.domain.entity.SysDictType;
+import com.lq.spacex.domain.entity.XDictData;
+import com.lq.spacex.domain.entity.XDictType;
 import com.lq.spacex.service.ISysDictDataService;
 import com.lq.spacex.service.ISysDictTypeService;
 import lombok.extern.slf4j.Slf4j;
@@ -38,19 +38,19 @@ public class XDictTypeController extends BaseController {
 
     @GetMapping("/list")
     @TaskTime
-    public ResponseEntity list(SysDictType sysDictType) {
+    public ResponseEntity list(XDictType sysDictType) {
         startPage();
-        PageInfo<SysDictType> pageInfo = sysDictTypeService.list(sysDictType);
+        PageInfo<XDictType> pageInfo = sysDictTypeService.list(sysDictType);
         return ResponseEntity.success(getDataTable(pageInfo));
     }
 
     @PostMapping("/saveOrUpdate")
     @Log(title = "字典类型",businessType = BusinessType.INSERT)
     @TaskTime
-    public ResponseEntity saveOrUpdate(@RequestBody @Validated SysDictType sysDictType) {
+    public ResponseEntity saveOrUpdate(@RequestBody @Validated XDictType sysDictType) {
         log.info("保存字典类型：{}", JSON.toJSONString(sysDictType));
         if (sysDictTypeService.saveOrUpdate(sysDictType)) {
-            List<SysDictData> dictDatas = sysDictDataService.selectDictDataByType(sysDictType.getDictType());
+            List<XDictData> dictDatas = sysDictDataService.selectDictDataByType(sysDictType.getDictType());
             DictUtils.setDictCache(sysDictType.getDictType(), dictDatas);
             return ResponseEntity.success("操作成功");
         }

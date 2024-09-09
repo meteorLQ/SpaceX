@@ -2,7 +2,7 @@ package com.lq.spacex.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.github.pagehelper.PageInfo;
-import com.lq.spacex.domain.entity.SysDictData;
+import com.lq.spacex.domain.entity.XDictData;
 
 import java.util.List;
 
@@ -14,10 +14,10 @@ import java.util.List;
  * @author LQ
  * @since 2024-07-29
  */
-public interface ISysDictDataService extends IService<SysDictData> {
-    PageInfo<SysDictData> list(SysDictData sysDictData);
+public interface ISysDictDataService extends IService<XDictData> {
+    PageInfo<XDictData> list(XDictData sysDictData);
 
 
-    List<SysDictData> selectDictDataByType(String dictType);
-    List<SysDictData> selectCacheDictDataByType(String dictType);
+    List<XDictData> selectDictDataByType(String dictType);
+    List<XDictData> selectCacheDictDataByType(String dictType);
 }

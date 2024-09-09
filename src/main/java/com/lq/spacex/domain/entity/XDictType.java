@@ -17,12 +17,12 @@ import java.io.Serializable;
  * @author LQ
  * @since 2024-07-29
  */
-@TableName("sys_dict_type")
+@TableName("x_dict_type")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SysDictType extends BaseEntity implements Serializable {
+public class XDictType extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

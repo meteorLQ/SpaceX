@@ -3,7 +3,7 @@ package com.lq.spacex.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.github.pagehelper.PageInfo;
-import com.lq.spacex.domain.entity.SysDictType;
+import com.lq.spacex.domain.entity.XDictType;
 
 /**
  * <p>
@@ -13,7 +13,7 @@ import com.lq.spacex.domain.entity.SysDictType;
  * @author LQ
  * @since 2024-07-29
  */
-public interface ISysDictTypeService extends IService<SysDictType> {
-    PageInfo<SysDictType> list(SysDictType sysDictType);
+public interface ISysDictTypeService extends IService<XDictType> {
+    PageInfo<XDictType> list(XDictType sysDictType);
 
 }
