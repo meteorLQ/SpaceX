@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import com.lq.spacex.common.core.domain.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +21,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @TableName("x_dict_data")
-public class XDictData implements Serializable {
+public class XDictData extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
