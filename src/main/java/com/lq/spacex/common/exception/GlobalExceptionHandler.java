@@ -100,7 +100,7 @@ public class GlobalExceptionHandler
     {
 //        log.error(e.getMessage(), e);
         String message = e.getAllErrors().get(0).getDefaultMessage();
-        return org.springframework.http.ResponseEntity.badRequest().body(ResponseEntity.error(message));
+        return org.springframework.http.ResponseEntity.badRequest().body(ResponseEntity.error(HttpStatus.BAD_REQUEST,message));
     }
 
     /**
@@ -111,7 +111,7 @@ public class GlobalExceptionHandler
     {
 //        log.error(e.getMessage(), e);
         String message = e.getBindingResult().getFieldError().getDefaultMessage();
-        return org.springframework.http.ResponseEntity.badRequest().body(ResponseEntity.error(message));
+        return org.springframework.http.ResponseEntity.badRequest().body(ResponseEntity.error(HttpStatus.BAD_REQUEST,message));
     }
 
 }
