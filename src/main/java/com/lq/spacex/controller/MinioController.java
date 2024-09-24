@@ -80,8 +80,9 @@ public class MinioController extends BaseController {
         results.forEach(itemResult -> {
 
             try {
-                System.out.println(itemResult.get().objectName());
+                log.info(itemResult.get().objectName());
             } catch (Exception e) {
+
                 throw new RuntimeException(e);
             }
 
