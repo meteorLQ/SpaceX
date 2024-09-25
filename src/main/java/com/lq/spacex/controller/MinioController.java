@@ -6,7 +6,6 @@ import com.google.common.collect.Multimap;
 import com.lq.spacex.common.core.controller.BaseController;
 import com.lq.spacex.common.core.domain.ResponseEntity;
 import com.lq.spacex.common.exception.ServiceException;
-import com.lq.spacex.common.utils.FileUtils;
 import com.lq.spacex.service.impl.MinioService;
 import io.minio.ListObjectsArgs;
 import io.minio.MinioClient;
