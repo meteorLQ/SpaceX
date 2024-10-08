@@ -73,6 +73,11 @@ public class MinioController extends BaseController {
         minioService.downloadFile(fileName, response);
     }
 
+    @GetMapping("/downloadFileByName/{fileName}")
+    public void downloadFile(@PathVariable("fileName") String fileName) {
+        minioService.downloadFile(fileName);
+    }
+
     @GetMapping("listObjects")
     public void listObjects() {
         Iterable<Result<Item>> results = minioClient.listObjects(ListObjectsArgs.builder().bucket(bucketName).build());

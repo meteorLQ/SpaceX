@@ -116,6 +116,22 @@ public class MinioService {
 
     }
 
+    public void downloadFile(String fileName) {
+        String str="D:\\ideatest\\SpaceX\\";
+        DownloadObjectArgs downloadObjectArgs = DownloadObjectArgs.builder()
+                .bucket(bucketName)
+                .object(fileName)
+                .filename(str+fileName)
+                .build();
+        try {
+            logger.info("{}:下载成功开始", fileName);
+            minioClient.downloadObject(downloadObjectArgs);
+            logger.debug("{}:下载成功", fileName);
+        } catch (Exception e) {
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
 
     public void deleteFile(@NonNull String fileName) {
         try {
