@@ -21,7 +21,7 @@ import java.util.List;
  * @since 2024-08-19
  */
 @RestController
-@RequestMapping("/x/menu")
+@RequestMapping("/menu")
 public class XMenuController {
     @Autowired
     private IXMenuService ixMenuService;

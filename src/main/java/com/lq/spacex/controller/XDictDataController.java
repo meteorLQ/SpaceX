@@ -23,7 +23,7 @@ import java.util.List;
  * @since 2024-07-29
  */
 @RestController
-@RequestMapping("/system/sysDictData")
+@RequestMapping("/sysDictData")
 @Slf4j
 public class XDictDataController extends BaseController {
     @Autowired

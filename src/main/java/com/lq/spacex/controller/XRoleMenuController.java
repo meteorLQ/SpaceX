@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2024-09-02
  */
 @RestController
-@RequestMapping("/system/xRoleMenu")
+@RequestMapping("/xRoleMenu")
 public class XRoleMenuController {
 
 }

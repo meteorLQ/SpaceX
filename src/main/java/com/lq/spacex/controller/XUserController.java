@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2022-02-28
  */
 @RestController
-@RequestMapping("/x/user")
+@RequestMapping("/user")
 public class XUserController extends BaseController {
 
     @Resource

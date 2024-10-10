@@ -1,3 +1,7 @@
+server:
+  servlet:
+    context-path: /x
+
 spring:
   profiles:
     active: 'win'
