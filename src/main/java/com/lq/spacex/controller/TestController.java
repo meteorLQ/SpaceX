@@ -19,27 +19,7 @@ public class TestController {
     public void test() {
         XRole role = XRole.builder().roleName("测试").id(1L).build();
         String jsonString = JSON.toJSONString(role);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
-        log.info("jsonString: " + jsonString);
+        System.out.println("jsonString = " + jsonString);
     }
 }
 
