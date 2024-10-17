@@ -7,6 +7,8 @@ import com.lq.spacex.common.utils.DateUtils;
 
 import java.lang.management.ManagementFactory;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * JVM相关信息
@@ -113,7 +115,9 @@ public class Jvm
      */
     public String getStartTime()
     {
-        return DateUtils.parseDateToStr(DateUtils.YYYY_MM_DD_HH_MM_SS, DateUtils.getServerStartDate());
+        LocalDateTime localDateTime = DateUtils.getServerStartDate();
+        String format = localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        return format;
     }
 
     /**
@@ -121,7 +125,7 @@ public class Jvm
      */
     public String getRunTime()
     {
-        return DateUtils.timeDistance(DateUtils.getNowDate(), DateUtils.getServerStartDate());
+        return DateUtils.timeDistance(LocalDateTime.now(), DateUtils.getServerStartDate());
     }
 
     /**

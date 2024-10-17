@@ -127,10 +127,10 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils
     /**
      * 获取服务器启动时间
      */
-    public static Date getServerStartDate()
+    public static LocalDateTime getServerStartDate()
     {
         long time = ManagementFactory.getRuntimeMXBean().getStartTime();
-        return new Date(time);
+        return LocalDateTime.ofInstant(Instant.ofEpochMilli(time), ZoneId.systemDefault());
     }
 
     /**
@@ -165,6 +165,22 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils
         // 计算差多少秒//输出结果
         // long sec = diff % nd % nh % nm / ns;
         return day + "天" + hour + "小时" + min + "分钟";
+    }
+
+    /**
+     * 计算时间差
+     *
+     * @param endDate 最后时间
+     * @param startTime 开始时间
+     * @return 时间差（天/小时/分钟）
+     */
+    public static String timeDistance(LocalDateTime endDate, LocalDateTime startTime)
+    {
+        Duration duration = Duration.between(endDate, startTime);
+        long days = duration.toDays();
+        long hours = duration.toHours();
+        long minutes = duration.toMinutes();
+        return days + "天" + hours + "小时" + minutes + "分钟";
     }
 
     /**
