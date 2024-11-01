@@ -20,6 +20,7 @@ public class TestController {
         XRole role = XRole.builder().roleName("测试").id(1L).build();
         String jsonString = JSON.toJSONString(role);
         System.out.println("jsonString = " + jsonString);
+        System.out.println("jsonString = " + jsonString);
     }
 }
 
