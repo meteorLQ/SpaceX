@@ -4,6 +4,7 @@ package com.lq.spacex.domain.vo.server;
 
 import com.lq.spacex.common.utils.Arith;
 import com.lq.spacex.common.utils.ip.IpUtils;
+import lombok.Builder;
 import lombok.Data;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
@@ -27,6 +28,7 @@ import oshi.hardware.CentralProcessor.TickType;
  * @author LQ
  */
 @Data
+@Builder
 public class Server
 {
     private static final int OSHI_WAIT_SECOND = 1000;

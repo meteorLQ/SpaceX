@@ -13,7 +13,7 @@ public class ServerController {
     @GetMapping()
     public ResponseEntity getInfo() throws Exception
     {
-        Server server = new Server();
+        Server server = Server.builder().build();
         server.copyTo();
         return ResponseEntity.success(server);
     }
