@@ -18,7 +18,6 @@ public class TestController {
     @GetMapping("/test")
     public void test() {
         XRole role = XRole.builder().roleName("测试").id(1L).build();
-        String jsonString = JSON.toJSONString(role);
     }
 }
 
