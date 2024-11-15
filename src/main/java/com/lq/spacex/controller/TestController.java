@@ -17,7 +17,9 @@ public class TestController {
     TestService testService;
     @GetMapping("/test")
     public void test() {
-        XRole role = XRole.builder().roleName("测试").id(1L).build();
+         XRole.builder().roleName("测试").id(1L).build();
+        XRole.builder().roleName("测试").id(2L).build();
+        XRole.builder().roleName("测试").id(3L).build();
     }
 }
 
