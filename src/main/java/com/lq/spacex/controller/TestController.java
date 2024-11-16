@@ -15,11 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     @Resource
     TestService testService;
+
     @GetMapping("/test")
     public void test() {
-         XRole.builder().roleName("测试").id(1L).build();
-        XRole.builder().roleName("测试").id(2L).build();
-        XRole.builder().roleName("测试").id(3L).build();
+        XRole.builder().roleName("测试").id(1L).build();
     }
 }
 
