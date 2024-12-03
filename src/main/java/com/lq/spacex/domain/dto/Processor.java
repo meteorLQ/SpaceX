@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Processor {
+    private String id;
     /**
      * 处理器型号
      */

@@ -1,7 +1,10 @@
 package com.lq.spacex.service.impl;
 
+import cn.hutool.core.util.IdUtil;
+import com.lq.spacex.common.utils.EsUtils;
 import com.lq.spacex.domain.dto.Processor;
 import com.lq.spacex.service.IProcessorService;
+import jakarta.annotation.Resource;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,28 +12,55 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.net.URL;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ProcessorServiceImpl implements IProcessorService {
+    @Resource
+    private EsUtils esUtils;
+    private final static String RANK_LADDER="rank-ladder";
+
+
+    public void getIndex(){
+        esUtils.getIndex(RANK_LADDER);
+    }
+
+    public void createSnapdragonCPUInfo(){
+        List<Processor> snapdragonCPUInfo = getSnapdragonCPUInfo();
+        snapdragonCPUInfo.forEach(processor -> {
+            esUtils.addDocument(RANK_LADDER,processor.getId(),processor);
+
+        });
+    }
+
+    public void createGetOtherCPUInfo(){
+        List<Processor> snapdragonCPUInfo = getOtherCPUInfo();
+
+    }
     /**
      * 获取骁龙处理器
      *
      * @return
      * @throws IOException
      */
-    public  List getSnapdragonCPUInfo() throws IOException {
+    private   List<Processor> getSnapdragonCPUInfo()  {
         String url = "https://www.mydrivers.com/zhuanti/tianti/01/index_gaotong.html";
-        Document document = Jsoup.parse(new URL(url), 30000);
+        Document document;
+        try {
+            document = Jsoup.parse(new URI(url).toURL(), 30000);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         Elements elements = document.getElementsByClass("main");
-        Element element = elements.get(0);
+        Element element = elements.getFirst();
         Elements tr = element.getElementsByTag("tr");
         Processor.ProcessorBuilder builder = Processor.builder();
         ArrayList<Processor> processors = new ArrayList<>();
-        for (Element e : tr) {
 
+
+        for (Element e : tr) {
             if (e.hasClass("tr1") || e.hasClass("font_16 font_center font_bold color_blue")) {
                 continue;
             } else if (e.hasAttr("style")) {
@@ -42,7 +72,10 @@ public class ProcessorServiceImpl implements IProcessorService {
                 // System.out.println(td);
                 continue;
             }
+
             Processor processor = builder.build();
+            String id = IdUtil.getSnowflakeNextIdStr();
+            processor.setId(id);
             // 处理器型号
             Element element0 = td.get(0);
             processor.setType(element0.text());
@@ -82,14 +115,20 @@ public class ProcessorServiceImpl implements IProcessorService {
      * @return
      * @throws IOException
      */
-    public  List getOtherCPUInfo() throws IOException {
+    private  List<Processor> getOtherCPUInfo()  {
         String url = "https://www.mydrivers.com/zhuanti/tianti/01/index_other.html";
-        Document document = Jsoup.parse(new URL(url), 30000);
+        Document document;
+        try {
+            document = Jsoup.parse(new URI(url).toURL(), 30000);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         Elements elements = document.getElementsByClass("main");
-        Element element = elements.get(0);
+        Element element = elements.getFirst();
         Elements tr = element.getElementsByTag("tr");
         Processor.ProcessorBuilder builder = Processor.builder();
         ArrayList<Processor> processors = new ArrayList<>();
+
         for (Element e : tr) {
 
             if (e.hasClass("tr1") || e.hasClass("font_16 font_center font_bold color_blue")) {
@@ -104,6 +143,8 @@ public class ProcessorServiceImpl implements IProcessorService {
                 continue;
             }
             Processor processor = builder.build();
+            String id = IdUtil.getSnowflakeNextIdStr();
+            processor.setId(id);
             // 处理器型号
             Element element0 = td.get(0);
             processor.setType(element0.text());
