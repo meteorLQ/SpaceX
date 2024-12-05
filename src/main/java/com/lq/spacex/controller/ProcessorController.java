@@ -29,4 +29,9 @@ public class ProcessorController {
         processorService.getIndex();
     }
 
+    @GetMapping("/query")
+    public void query() {
+        processorService.query();
+    }
+
 }

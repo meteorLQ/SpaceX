@@ -1,10 +1,13 @@
 package com.lq.spacex.service.impl;
 
 import cn.hutool.core.util.IdUtil;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.Hit;
 import com.lq.spacex.common.utils.EsUtils;
 import com.lq.spacex.domain.dto.Processor;
 import com.lq.spacex.service.IProcessorService;
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,6 +19,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 public class ProcessorServiceImpl implements IProcessorService {
     @Resource
@@ -176,6 +180,12 @@ public class ProcessorServiceImpl implements IProcessorService {
             processors.add(processor);
         }
         return processors;
+    }
+
+    public void query(){
+        SearchResponse<Processor> response = esUtils.searchMatch("type", "至尊", RANK_LADDER, Processor.class);
+        List<Hit<Processor>> hits = response.hits().hits();
+        hits.forEach(processorHit -> System.out.println(processorHit.source()));
     }
 
     public static void main(String[] args) throws IOException {

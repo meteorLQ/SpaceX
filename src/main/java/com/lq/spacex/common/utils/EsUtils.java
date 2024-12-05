@@ -105,6 +105,21 @@ public class EsUtils {
         }
     }
 
+    public void addDocumentB(String index, String id, Object o) {
+        try {
+            elasticsearchClient.bulk();
+            elasticsearchClient.create(i -> i.index(index).id(id).document(o));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                elasticsearchClient.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
     public void search(String index, Object c) {
         SearchResponse<?> search;
         try {
@@ -120,5 +135,24 @@ public class EsUtils {
         }
         List<? extends Hit<?>> hits = search.hits().hits();
         hits.forEach(h -> System.out.println("h.source() = " + h.source()));
+    }
+
+    public  <TDocument> SearchResponse<TDocument> searchMatch(String field,String value,String index, Class<TDocument> c) {
+        try {
+//            SearchRequest request = SearchRequest.of(builder ->
+//                    builder.index("user")
+//                            .query(query -> query.match(match ->
+//                                    match.field("name").query("zhansang"))));
+//            SearchResponse<?> response = elasticsearchClient.search(request, c.getClass());
+          return   elasticsearchClient.search(req-> req.index(index).query(q -> q.match(t -> t.field(field).query(value))), c);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                elasticsearchClient.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }
