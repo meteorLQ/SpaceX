@@ -3,6 +3,7 @@ package com.lq.spacex.service.impl;
 import cn.hutool.core.util.IdUtil;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
+import com.google.common.collect.Lists;
 import com.lq.spacex.common.utils.EsUtils;
 import com.lq.spacex.domain.dto.Processor;
 import com.lq.spacex.service.IProcessorService;
@@ -182,10 +183,12 @@ public class ProcessorServiceImpl implements IProcessorService {
         return processors;
     }
 
-    public void query(){
-        SearchResponse<Processor> response = esUtils.searchMatch("type", "至尊", RANK_LADDER, Processor.class);
+    public List<Processor> queryByType(String type){
+        SearchResponse<Processor> response = esUtils.searchMatch("type", type, RANK_LADDER, Processor.class);
         List<Hit<Processor>> hits = response.hits().hits();
-        hits.forEach(processorHit -> System.out.println(processorHit.source()));
+        List<Processor> processors = Lists.newArrayListWithCapacity(hits.size());
+        hits.forEach(processorHit -> processors.add(processorHit.source()));
+        return processors;
     }
 
     public static void main(String[] args) throws IOException {

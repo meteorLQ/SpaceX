@@ -1,10 +1,13 @@
 package com.lq.spacex.controller;
 
+import com.lq.spacex.domain.dto.Processor;
 import com.lq.spacex.service.impl.ProcessorServiceImpl;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 @RestController
 @RequestMapping("/processor")
@@ -29,9 +32,9 @@ public class ProcessorController {
         processorService.getIndex();
     }
 
-    @GetMapping("/query")
-    public void query() {
-        processorService.query();
+    @GetMapping("/query/{type}")
+    public List<Processor> query(@PathVariable String type) {
+       return processorService.queryByType(type);
     }
 
 }

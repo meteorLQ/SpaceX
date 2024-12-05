@@ -1,18 +1,23 @@
 package com.lq.spacex.common.utils;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.InfoResponse;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.bulk.BulkOperation;
+import co.elastic.clients.elasticsearch.core.bulk.CreateOperation;
 import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.elasticsearch.indices.DeleteIndexResponse;
 import co.elastic.clients.elasticsearch.indices.GetIndexResponse;
 import co.elastic.clients.elasticsearch.indices.IndexState;
+import com.lq.spacex.domain.dto.Processor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -105,10 +110,19 @@ public class EsUtils {
         }
     }
 
-    public void addDocumentB(String index, String id, Object o) {
+    public void addDocumentBulk(String index, String id, Object o) {
         try {
-            elasticsearchClient.bulk();
-            elasticsearchClient.create(i -> i.index(index).id(id).document(o));
+
+            elasticsearchClient.bulk(f-> f.operations(x-> x.create(s-> s.index(index).id("").document(Processor.builder()))));
+            BulkRequest.of(f-> f.operations(x-> x.create(s-> s.index("").id("").document(Processor.builder().build()))));
+
+
+            List<BulkOperation> list=new ArrayList<>();
+            CreateOperation<Processor> build = new CreateOperation.Builder<Processor>().document(Processor.builder().build()).build();
+            BulkOperation build1 = new BulkOperation.Builder().create(build).build();
+            list.add(build1);
+            BulkRequest request = new BulkRequest.Builder().operations(list).build();
+            elasticsearchClient.bulk(request);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
@@ -139,20 +153,16 @@ public class EsUtils {
 
     public  <TDocument> SearchResponse<TDocument> searchMatch(String field,String value,String index, Class<TDocument> c) {
         try {
-//            SearchRequest request = SearchRequest.of(builder ->
-//                    builder.index("user")
-//                            .query(query -> query.match(match ->
-//                                    match.field("name").query("zhansang"))));
-//            SearchResponse<?> response = elasticsearchClient.search(request, c.getClass());
           return   elasticsearchClient.search(req-> req.index(index).query(q -> q.match(t -> t.field(field).query(value))), c);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+           log.error("searchMatch异常",e);
         } finally {
             try {
                 elasticsearchClient.close();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+               log.error("searchMatch异常",e);
             }
         }
+        return null;
     }
 }
