@@ -140,12 +140,6 @@ public class EsUtils {
             search = elasticsearchClient.search(s -> s.index(index).from(0).size(20), c.getClass());
         } catch (Exception e) {
             throw new RuntimeException(e);
-        } finally {
-            try {
-                elasticsearchClient.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
         }
         List<? extends Hit<?>> hits = search.hits().hits();
         hits.forEach(h -> System.out.println("h.source() = " + h.source()));
@@ -153,15 +147,9 @@ public class EsUtils {
 
     public  <TDocument> SearchResponse<TDocument> searchMatch(String field,String value,String index, Class<TDocument> c) {
         try {
-          return   elasticsearchClient.search(req-> req.index(index).query(q -> q.match(t -> t.field(field).query(value))), c);
+          return   elasticsearchClient.search(req-> req.index(index).size(1000).query(q -> q.match(t -> t.field(field).query(value))), c);
         } catch (Exception e) {
-           log.error("searchMatch异常",e);
-        } finally {
-            try {
-                elasticsearchClient.close();
-            } catch (IOException e) {
-               log.error("searchMatch异常",e);
-            }
+           log.error("searchMatch异常:{}",e.getMessage(),e);
         }
         return null;
     }

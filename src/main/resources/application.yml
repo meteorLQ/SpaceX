@@ -40,11 +40,11 @@ spring:
 #  file:
 #    path: ../SpaceX/logs
 #    org.springframework: info
-logging:
-  structured:
-    format:
-      console: logstash
-      file: logstash
+#logging:
+#  structured:
+#    format:
+#      console: logstash
+#      file: logstash
 
 #  kafka:
 #    bootstrap-servers: localhost:9092
