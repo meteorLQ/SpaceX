@@ -80,10 +80,27 @@ public class EsUtils {
         }
     }
 
-    public void deleteIndices(String index) {
+    public void deleteIndex(String index) {
         DeleteIndexResponse response;
         try {
             response = elasticsearchClient.indices().delete(req -> req.index(index));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                elasticsearchClient.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        System.out.println("response = " + response.acknowledged());
+
+    }
+
+    public void deleteDocument(String index) {
+        DeleteIndexResponse response;
+        try {
+            response = elasticsearchClient.delete(d->d.id(index));
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
