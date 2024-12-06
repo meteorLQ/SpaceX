@@ -184,10 +184,7 @@ public class ProcessorServiceImpl implements IProcessorService {
     }
 
     public List<Processor> queryByType(String type){
-        SearchResponse<Processor> response = esUtils.searchMatch("type", type, RANK_LADDER, Processor.class);
-        List<Hit<Processor>> hits = response.hits().hits();
-        List<Processor> processors = Lists.newArrayListWithCapacity(hits.size());
-        hits.forEach(processorHit -> processors.add(processorHit.source()));
+        List<Processor> processors = esUtils.searchMatch("type", type, RANK_LADDER, Processor.class);
         return processors;
     }
 

@@ -10,6 +10,7 @@ import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.elasticsearch.indices.DeleteIndexResponse;
 import co.elastic.clients.elasticsearch.indices.GetIndexResponse;
 import co.elastic.clients.elasticsearch.indices.IndexState;
+import com.google.common.collect.Lists;
 import com.lq.spacex.domain.dto.Processor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -145,9 +146,13 @@ public class EsUtils {
         hits.forEach(h -> System.out.println("h.source() = " + h.source()));
     }
 
-    public  <TDocument> SearchResponse<TDocument> searchMatch(String field,String value,String index, Class<TDocument> c) {
+    public  <TDocument> List<TDocument> searchMatch(String field,String value,String index, Class<TDocument> c) {
         try {
-          return   elasticsearchClient.search(req-> req.index(index).size(1000).query(q -> q.match(t -> t.field(field).query(value))), c);
+            SearchResponse<TDocument> response = elasticsearchClient.search(req -> req.index(index).size(1000).query(q -> q.match(t -> t.field(field).query(value))), c);
+            List<Hit<TDocument>> hits = response.hits().hits();
+            List<TDocument> documents = Lists.newArrayListWithCapacity(hits.size());
+            hits.forEach(d -> documents.add(d.source()));
+            return documents;
         } catch (Exception e) {
            log.error("searchMatch异常:{}",e.getMessage(),e);
         }
