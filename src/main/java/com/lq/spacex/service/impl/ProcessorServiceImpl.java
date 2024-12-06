@@ -188,6 +188,13 @@ public class ProcessorServiceImpl implements IProcessorService {
         return processors;
     }
 
+    public void deleteById(String id){
+        esUtils.deleteDocument(id,RANK_LADDER);
+    }
+
+    public void deleteById(String id,String index){
+        esUtils.deleteDocument(id,index);
+    }
     public static void main(String[] args) throws IOException {
 //        getSnapdragonCPUInfo();
 //        getOtherCPUInfo();

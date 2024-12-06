@@ -1,7 +1,9 @@
 package com.lq.spacex.common.utils;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch._types.Result;
 import co.elastic.clients.elasticsearch.core.BulkRequest;
+import co.elastic.clients.elasticsearch.core.DeleteResponse;
 import co.elastic.clients.elasticsearch.core.InfoResponse;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.bulk.BulkOperation;
@@ -97,21 +99,14 @@ public class EsUtils {
 
     }
 
-    public void deleteDocument(String index) {
-        DeleteIndexResponse response;
+    public void deleteDocument(String id,String index) {
         try {
-            response = elasticsearchClient.delete(d->d.id(index));
+            DeleteResponse delete = elasticsearchClient.delete(d -> d.id(id).index(index));
+            Result result = delete.result();
+            log.info("result:{},id:{}",result,delete.id());
         } catch (IOException e) {
-            throw new RuntimeException(e);
-        } finally {
-            try {
-                elasticsearchClient.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            log.error("deleteDocument:{}",e.getMessage(),e);
         }
-        System.out.println("response = " + response.acknowledged());
-
     }
 
     public void addDocument(String index, String id, Object o) {

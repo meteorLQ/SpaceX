@@ -37,4 +37,15 @@ public class ProcessorController {
        return processorService.queryByType(type);
     }
 
+    @GetMapping("/deleteById/{id}")
+    public void deleteById(@PathVariable String id) {
+         processorService.deleteById(id);
+    }
+
+    @GetMapping("/deleteByIdIndex/{id}")
+    public void deleteByIdIndex(@PathVariable String id) {
+
+        processorService.deleteById(id,"my-index");
+    }
+
 }
