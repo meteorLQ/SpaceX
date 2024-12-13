@@ -34,10 +34,7 @@ public class ProcessorServiceImpl implements IProcessorService {
 
     public void createSnapdragonCPUInfo(){
         List<Processor> snapdragonCPUInfo = getSnapdragonCPUInfo();
-        snapdragonCPUInfo.forEach(processor -> {
-            esUtils.addDocument(RANK_LADDER,processor.getId(),processor);
-
-        });
+        snapdragonCPUInfo.forEach(processor -> esUtils.addDocument(RANK_LADDER,processor.getId(),processor));
     }
 
     public void createGetOtherCPUInfo(){
