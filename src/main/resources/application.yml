@@ -13,6 +13,9 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
+  kafka:
+    bootstrap-servers: 207.211.162.191:9092
+
   datasource:
     #driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://207.211.162.191:5432/spaceX
