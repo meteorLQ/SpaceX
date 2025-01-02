@@ -31,11 +31,11 @@ public class KafkaController {
     public void testFuture (){
         CompletableFuture<SendResult<String, String>> future = kafkaTemplate.send("hello-topic", "hello");
         try {
-            SendResult<String, String> stringStringSendResult = future.get();
+//            SendResult<String, String> stringStringSendResult = future.get();
             future.thenApply(c->{
                 ProducerRecord<String, String> producerRecord = c.getProducerRecord();
                 try {
-                    TimeUnit.SECONDS.sleep(2);
+                    TimeUnit.SECONDS.sleep(30);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -43,9 +43,7 @@ public class KafkaController {
                 return producerRecord;
             });
             log.info("异步后执行：{}", LocalDate.now());
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } catch (ExecutionException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
