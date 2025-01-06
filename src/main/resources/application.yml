@@ -3,6 +3,8 @@ server:
     context-path: /x
 
 spring:
+  main:
+    keep-alive: true
   threads:
     virtual:
       enabled: true
