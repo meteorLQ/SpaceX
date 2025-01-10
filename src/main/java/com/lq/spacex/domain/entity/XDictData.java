@@ -29,7 +29,7 @@ public class XDictData extends BaseEntity implements Serializable {
      * 字典编码
      */
     @TableId("dict_code")
-    private Long dictCode;
+    private String dictCode;
 
     /**
      * 字典排序
