@@ -57,10 +57,18 @@ public class XDictDataController extends BaseController {
      * 根据字典类型查询字典数据信息
      */
     @GetMapping(value = "/type/{dictType}")
-    public ResponseEntity dictType(@PathVariable String dictType)
-    {
+    public ResponseEntity dictType(@PathVariable String dictType) {
         List<XDictData> list = sysDictDataService.selectCacheDictDataByType(dictType);
         return ResponseEntity.success(list);
+
+    }
+
+    @DeleteMapping(value = "/del/{dictCode}")
+    public ResponseEntity delete(@PathVariable String dictCode) {
+        if (sysDictDataService.removeById(dictCode)) {
+            return ResponseEntity.success("操作成功");
+        }
+        return ResponseEntity.error("操作失败");
 
     }
 }

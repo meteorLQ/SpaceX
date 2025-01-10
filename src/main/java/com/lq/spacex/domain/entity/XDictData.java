@@ -80,30 +80,6 @@ public class XDictData extends BaseEntity implements Serializable {
     private String status;
 
     /**
-     * 创建者
-     */
-    @TableField("create_by")
-    private String createBy;
-
-    /**
-     * 创建时间
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
-
-    /**
-     * 更新者
-     */
-    @TableField("update_by")
-    private String updateBy;
-
-    /**
-     * 更新时间
-     */
-    @TableField("update_time")
-    private LocalDateTime updateTime;
-
-    /**
      * 备注
      */
     @TableField("remark")
