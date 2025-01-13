@@ -20,4 +20,5 @@ public interface ISysDictDataService extends IService<XDictData> {
 
     List<XDictData> selectDictDataByType(String dictType);
     List<XDictData> selectCacheDictDataByType(String dictType);
+    List<XDictData> selectDictDataByTypeAndValue(String dictType,String dictValue);
 }

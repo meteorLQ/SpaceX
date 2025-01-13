@@ -42,4 +42,9 @@ public class SysDictDataServiceImpl extends ServiceImpl<SysDictDataMapper, XDict
         List<XDictData> dictCache = DictUtils.getDictCache(dictType);
         return dictCache;
     }
+
+    @Override
+    public List<XDictData> selectDictDataByTypeAndValue(String dictType, String dictValue) {
+        return this.lambdaQuery().eq(XDictData::getDictType, dictType).eq(XDictData::getDictValue,dictValue).list();
+    }
 }

@@ -1,10 +1,12 @@
 package com.lq.spacex.controller;
 
+import cn.hutool.core.collection.CollectionUtil;
 import com.github.pagehelper.PageInfo;
 import com.lq.spacex.common.annotation.TaskTime;
 import com.lq.spacex.common.core.controller.BaseController;
 import com.lq.spacex.common.core.domain.ResponseEntity;
 import com.lq.spacex.common.utils.DictUtils;
+import com.lq.spacex.common.utils.StringUtils;
 import com.lq.spacex.domain.entity.XDictData;
 import com.lq.spacex.service.ISysDictDataService;
 import lombok.extern.slf4j.Slf4j;
@@ -38,10 +40,18 @@ public class XDictDataController extends BaseController {
 
     @PostMapping("/saveOrUpdate")
     @TaskTime
-    public ResponseEntity saveOrUpdate(@RequestBody @Validated XDictData sysDictData) {
-        if (sysDictDataService.saveOrUpdate(sysDictData)) {
-            List<XDictData> dictDatas = sysDictDataService.selectDictDataByType(sysDictData.getDictType());
-            DictUtils.setDictCache(sysDictData.getDictType(), dictDatas);
+    public ResponseEntity saveOrUpdate(@RequestBody @Validated XDictData xDictData) {
+
+        if (StringUtils.isNotBlank(xDictData.getDictCode())){
+            List<XDictData> dictData = sysDictDataService.selectDictDataByTypeAndValue(xDictData.getDictType(), xDictData.getDictValue());
+            if (CollectionUtil.isNotEmpty(dictData)){
+                ResponseEntity.error("字典值已存在");
+            }
+        }
+
+        if (sysDictDataService.saveOrUpdate(xDictData)) {
+            List<XDictData> dictDatas = sysDictDataService.selectDictDataByType(xDictData.getDictType());
+            DictUtils.setDictCache(xDictData.getDictType(), dictDatas);
             return ResponseEntity.success("操作成功");
         }
         return ResponseEntity.error("操作失败");
