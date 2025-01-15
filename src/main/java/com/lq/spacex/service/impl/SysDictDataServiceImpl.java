@@ -34,7 +34,7 @@ public class SysDictDataServiceImpl extends ServiceImpl<SysDictDataMapper, XDict
 
     @Override
     public List<XDictData> selectDictDataByType(String dictType) {
-        return this.lambdaQuery().eq(XDictData::getDictType, dictType).list();
+        return this.lambdaQuery().eq(XDictData::getDictType, dictType).orderByAsc(XDictData::getUpdateTime).list();
     }
 
     @Override
