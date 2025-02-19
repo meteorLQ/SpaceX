@@ -115,11 +115,11 @@ public class EsUtils {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            try {
-                elasticsearchClient.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+//            try {
+//                //elasticsearchClient.close();
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
         }
     }
 
