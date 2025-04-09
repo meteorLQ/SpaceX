@@ -21,10 +21,6 @@ public class TestController {
     @GetMapping("/test")
     public void test() {
         XRole.builder().roleName("测试").id(1L).build();
-        XRole.builder().roleName("测试").id(1L).build();
-        XRole.builder().roleName("测试").id(1L).build();
-        XRole.builder().roleName("测试").id(1L).build();
-        XRole.builder().roleName("测试").id(1L).build();
         read();
     }
 
